@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTT DATA Cloud Services — Sales Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- Header ---- */
+        .header {
+            background: linear-gradient(135deg, #001e50 0%, #003087 50%, #0050d4 100%);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 2px solid #0070f3;
+            box-shadow: 0 2px 20px rgba(0,112,243,0.3);
+            z-index: 10;
+        }
+        .header-logos { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .header-logo-ntt, .header-logo-kore {
+            background: white; border-radius: 8px; padding: 4px 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .header-logo-ntt img { height: 30px; }
+        .header-logo-kore img { height: 26px; }
+        .logo-divider { color: rgba(255,255,255,0.4); font-size: 22px; font-weight: 200; }
+        .header-text h1 { font-size: 18px; font-weight: 700; color: white; }
+        .header-text p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 1px; }
+        .header-badge {
+            margin-left: auto; background: rgba(0,255,136,0.15); color: #00ff88;
+            padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+            border: 1px solid rgba(0,255,136,0.3); white-space: nowrap;
+        }
+
+        /* ---- Controls bar ---- */
+        .controls-bar {
+            background: #0f1320;
+            border-bottom: 1px solid #1a2030;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            z-index: 9;
+        }
+        .control-group {
+            display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888;
+        }
+        .control-group label { white-space: nowrap; user-select: none; cursor: pointer; }
+        .toggle {
+            position: relative; width: 36px; height: 20px; cursor: pointer;
+        }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle .slider {
+            position: absolute; inset: 0; background: #333; border-radius: 20px; transition: 0.3s;
+        }
+        .toggle .slider::before {
+            content: ''; position: absolute; width: 16px; height: 16px;
+            left: 2px; bottom: 2px; background: #888; border-radius: 50%; transition: 0.3s;
+        }
+        .toggle input:checked + .slider { background: #0050d4; }
+        .toggle input:checked + .slider::before { transform: translateX(16px); background: white; }
+
+        /* 3-mode selector */
+        .mode-switch {
+            display: flex; align-items: center; gap: 2px; font-size: 12px;
+            background: #1a1f2e; border-radius: 8px; padding: 2px; border: 1px solid #2a3040;
+        }
+        .mode-btn {
+            padding: 4px 14px; border-radius: 6px; border: none; cursor: pointer;
+            font-size: 12px; font-weight: 500; background: transparent; color: #666;
+            transition: all 0.2s;
+        }
+        .mode-btn.active { background: #0050d4; color: white; font-weight: 600; }
+        .mode-btn:hover:not(.active) { color: #aaa; }
+
+        /* ---- Layout: sidebar + main ---- */
+        .app-body { display: flex; flex: 1; overflow: hidden; }
+
+        /* ---- Sidebar ---- */
+        .sidebar {
+            width: 260px; min-width: 260px;
+            background: #0d1018;
+            border-right: 1px solid #1a2030;
+            display: flex; flex-direction: column;
+            transition: margin-left 0.3s;
+        }
+        .sidebar.collapsed { margin-left: -260px; }
+        .sidebar-header {
+            padding: 12px 16px; border-bottom: 1px solid #1a2030;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .sidebar-header h3 { font-size: 13px; color: #7db8ff; font-weight: 600; }
+        .sidebar-new-btn {
+            background: #0050d4; color: white; border: none; padding: 4px 12px;
+            border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
+        }
+        .sidebar-new-btn:hover { background: #0070f3; }
+        .sidebar-list {
+            flex: 1; overflow-y: auto; padding: 8px;
+        }
+        .sidebar-list::-webkit-scrollbar { width: 4px; }
+        .sidebar-list::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        .sidebar-item {
+            padding: 10px 12px; border-radius: 8px; cursor: pointer;
+            margin-bottom: 4px; transition: background 0.2s;
+        }
+        .sidebar-item:hover { background: #1a1f2e; }
+        .sidebar-item.active { background: #1a2540; border: 1px solid #2a3560; }
+        .sidebar-item .conv-title {
+            font-size: 13px; color: #c0c8d8; white-space: nowrap;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+        .sidebar-item .conv-date {
+            font-size: 11px; color: #555; margin-top: 2px;
+        }
+        .sidebar-item .conv-delete {
+            float: right; background: none; border: none; color: #555;
+            cursor: pointer; font-size: 14px; padding: 0 4px; line-height: 1;
+        }
+        .sidebar-item .conv-delete:hover { color: #ff6666; }
+        .sidebar-toggle {
+            position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            background: #1a2030; border: 1px solid #2a3040; border-left: none;
+            color: #7db8ff; padding: 12px 4px; border-radius: 0 6px 6px 0;
+            cursor: pointer; font-size: 14px; z-index: 5;
+        }
+        .sidebar-toggle:hover { background: #2a3050; }
+
+        /* ---- Main chat area ---- */
+        .main-area {
+            flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden;
+        }
+
+        .chat-container {
+            flex: 1; overflow-y: auto; padding: 20px 24px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .chat-container::-webkit-scrollbar { width: 6px; }
+        .chat-container::-webkit-scrollbar-track { background: transparent; }
+        .chat-container::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+        /* ---- Messages ---- */
+        .message {
+            max-width: 82%; padding: 14px 18px; border-radius: 16px;
+            font-size: 14px; line-height: 1.6; animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.bot {
+            align-self: flex-start; background: #1a1f2e;
+            border: 1px solid #2a3040; border-bottom-left-radius: 4px;
+        }
+        .message.user {
+            align-self: flex-end; background: linear-gradient(135deg, #003087, #0050d4);
+            color: white; border-bottom-right-radius: 4px;
+        }
+        .message.bot .sender {
+            font-size: 10px; font-weight: 700; color: #0070f3;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+        }
+        .message.bot h3, .message.bot h4 { color: #7db8ff; font-size: 13px; margin: 8px 0 3px 0; }
+        .message.bot ul, .message.bot ol { margin: 3px 0 6px 18px; color: #c0c8d8; }
+        .message.bot li { margin-bottom: 2px; }
+        .message.bot strong, .message.bot b { color: #a0c4ff; }
+        .message.bot p { margin: 4px 0; }
+        .message.bot a { color: #5ba3ff; text-decoration: none; }
+        .message.bot a:hover { text-decoration: underline; }
+        .message.error {
+            align-self: flex-start; background: #2e1a1a;
+            border: 1px solid #402a2a; border-bottom-left-radius: 4px; color: #ff8888;
+        }
+
+        /* ---- Expandable detail items (brief mode) ---- */
+        .expand-item {
+            background: #141828; border: 1px solid #252a3a; border-radius: 8px;
+            margin: 4px 0; overflow: hidden; transition: border-color 0.2s;
+        }
+        .expand-item:hover { border-color: #3a4060; }
+        .expand-header {
+            padding: 8px 12px; cursor: pointer; display: flex;
+            align-items: flex-start; gap: 8px; font-size: 13px;
+        }
+        .expand-arrow {
+            color: #0070f3; font-size: 11px; margin-top: 3px;
+            transition: transform 0.2s; flex-shrink: 0;
+        }
+        .expand-item.open .expand-arrow { transform: rotate(90deg); }
+        .expand-body {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding: 0 12px; font-size: 13px; color: #999; line-height: 1.5;
+        }
+        .expand-item.open .expand-body { max-height: 500px; padding: 0 12px 10px 12px; }
+
+        /* ---- Sources bibliography ---- */
+        .sources-block {
+            margin-top: 8px; padding-top: 8px; border-top: 1px solid #252a3a;
+            font-size: 11px; color: #666;
+        }
+        .sources-block .src-label { font-weight: 600; color: #555; margin-bottom: 3px; }
+        .sources-block a { color: #4a8ad4; font-size: 11px; }
+        .sources-block .src-item { margin: 1px 0; }
+
+        /* ---- Typing indicator ---- */
+        .typing-indicator {
+            align-self: flex-start; padding: 14px 18px; background: #1a1f2e;
+            border: 1px solid #2a3040; border-radius: 16px; border-bottom-left-radius: 4px;
+            display: none;
+        }
+        .typing-indicator span {
+            display: inline-block; width: 8px; height: 8px; background: #0070f3;
+            border-radius: 50%; margin-right: 4px; animation: bounce 1.4s infinite ease-in-out;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* ---- Quick actions ---- */
+        .quick-actions {
+            display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 24px;
+            transition: max-height 0.3s, opacity 0.3s, padding 0.3s;
+            max-height: 200px; opacity: 1; overflow: hidden;
+        }
+        .quick-actions.hidden { max-height: 0; opacity: 0; padding: 0 24px; }
+        .quick-btn {
+            background: #1a1f2e; border: 1px solid #2a3040; color: #7db8ff;
+            padding: 6px 14px; border-radius: 20px; font-size: 12px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .quick-btn:hover { background: #0050d4; color: white; border-color: #0070f3; }
+
+        /* ---- Input area ---- */
+        .input-area {
+            padding: 12px 24px; background: #0f1320; border-top: 1px solid #1a2030;
+            display: flex; gap: 10px; align-items: center;
+        }
+        .input-area input {
+            flex: 1; background: #1a1f2e; border: 1px solid #2a3040; color: white;
+            padding: 12px 16px; border-radius: 12px; font-size: 14px; outline: none;
+        }
+        .input-area input:focus { border-color: #0070f3; }
+        .input-area input::placeholder { color: #555; }
+        .input-area button {
+            background: linear-gradient(135deg, #003087, #0050d4); color: white;
+            border: none; padding: 12px 20px; border-radius: 12px;
+            font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap;
+        }
+        .input-area button:hover { background: linear-gradient(135deg, #0050d4, #0070f3); }
+        .input-area button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .version-stamp { text-align: center; padding: 4px; font-size: 10px; color: #333; }
+
+        /* ---- API Banner ---- */
+        .api-banner {
+            background: #1a1000; border-bottom: 1px solid #3a3000;
+            padding: 8px 20px; display: flex; align-items: center; gap: 10px; font-size: 12px;
+        }
+        .api-banner.hidden { display: none; }
+        .api-banner label { color: #ffcc00; font-weight: 600; white-space: nowrap; }
+        .api-banner input {
+            flex: 1; background: #2a2000; border: 1px solid #4a4000; color: #ffcc00;
+            padding: 5px 10px; border-radius: 6px; font-size: 12px; font-family: monospace;
+        }
+        .api-banner button {
+            background: #ffcc00; color: #1a1000; border: none; padding: 5px 14px;
+            border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logos">
+            <div class="header-logo-ntt">
+                <img src="NTTDAtaLogo.png" alt="NTT DATA">
+            </div>
+            <span class="logo-divider">|</span>
+            <div class="header-logo-kore">
+                <img src="Kore.ai_Logo (1).png" alt="Kore.ai">
+            </div>
+        </div>
+        <div class="header-text">
+            <h1>Cloud Services Sales Assistant</h1>
+            <p>One NTT Platform — Interactive Knowledge Agent &nbsp;|&nbsp; Powered by Kore.ai</p>
+        </div>
+        <div class="header-badge">POC v1.3</div>
+    </div>
+
+    <!-- Controls bar -->
+    <div class="controls-bar">
+        <div class="mode-switch">
+            <button class="mode-btn" id="modeBrief" onclick="setMode('brief')">Brief</button>
+            <button class="mode-btn active" id="modeModerate" onclick="setMode('moderate')">Moderate</button>
+            <button class="mode-btn" id="modeVerbose" onclick="setMode('verbose')">Verbose</button>
+        </div>
+        <div class="control-group">
+            <label class="toggle">
+                <input type="checkbox" id="toggleDiscover" checked onchange="updateDiscover()">
+                <span class="slider"></span>
+            </label>
+            <label for="toggleDiscover">Discovery Questions</label>
+        </div>
+        <div class="control-group">
+            <label class="toggle">
+                <input type="checkbox" id="toggleSources" onchange="updateSources()">
+                <span class="slider"></span>
+            </label>
+            <label for="toggleSources">Show Sources</label>
+        </div>
+    </div>
+
+    <!-- API Banner -->
+    <div class="api-banner hidden" id="apiBanner">
+        <label>API Key:</label>
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-...">
+        <button onclick="saveApiKey()">Connect</button>
+    </div>
+
+    <!-- App body: sidebar + main -->
+    <div class="app-body">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Conversations</h3>
+                <button class="sidebar-new-btn" onclick="newConversation()">+ New</button>
+            </div>
+            <div class="sidebar-list" id="sidebarList"></div>
+        </div>
+
+        <!-- Main chat -->
+        <div class="main-area">
+            <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">&#9776;</button>
+
+            <div class="chat-container" id="chatContainer"></div>
+
+            <div class="quick-actions" id="quickActions">
+                <button class="quick-btn" onclick="sendQuick('Give me an overview of NTT DATA Cloud Services and what we sell')">Cloud Services Overview</button>
+                <button class="quick-btn" onclick="sendQuick('What products help with large Azure deployments?')">Azure Solutions</button>
+                <button class="quick-btn" onclick="sendQuick('Tell me about the Smart AI Agent ecosystem')">Smart AI Agents</button>
+                <button class="quick-btn" onclick="sendQuick('What is the Nucleus platform and why should a customer care?')">Nucleus Platform</button>
+                <button class="quick-btn" onclick="sendQuick('How should I position NTT DATA against competitors?')">Competitive Positioning</button>
+                <button class="quick-btn" onclick="sendQuick('What industries do we specialize in?')">Industry Solutions</button>
+                <button class="quick-btn" onclick="sendQuick('Help me prep for a meeting with a financial services prospect')">Meeting Prep</button>
+                <button class="quick-btn" onclick="sendQuick('What are our latest partnerships and news?')">Recent News</button>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Ask about NTT DATA Cloud Services..." onkeypress="if(event.key==='Enter')sendMessage()">
+                <button id="sendBtn" onclick="sendMessage()">Send</button>
+            </div>
+            <div class="version-stamp">NTT DATA Sales Bot POC v1.3.0 — 2026-04-01 17:00 PT — Powered by Claude AI</div>
+        </div>
+    </div>
+
+    <div class="typing-indicator" id="typingIndicator">
+        <span></span><span></span><span></span>
+    </div>
+
+<script>
+// ================================================================
+// CONFIG
+// ================================================================
+let apiKey = localStorage.getItem('ntt_anthropic_key') || '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';
+let responseMode = 'moderate'; // 'brief' | 'moderate' | 'verbose'
+let showSources = false;
+let showDiscover = true;
+
+// ================================================================
+// CONVERSATION STORAGE
+// ================================================================
+let conversations = JSON.parse(localStorage.getItem('ntt_conversations') || '[]');
+let activeConvId = null;
+
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+function getActiveConv() {
+    return conversations.find(c => c.id === activeConvId);
+}
+
+function saveConversations() {
+    localStorage.setItem('ntt_conversations', JSON.stringify(conversations));
+}
+
+function newConversation() {
+    const conv = {
+        id: genId(),
+        title: 'New conversation',
+        created: new Date().toISOString(),
+        messages: [],        // {role, content} for API
+        chatHtml: [],        // rendered HTML for display
+    };
+    conversations.unshift(conv);
+    activeConvId = conv.id;
+    saveConversations();
+    renderSidebar();
+    renderChat();
+    showWelcome();
+}
+
+function switchConversation(id) {
+    activeConvId = id;
+    renderSidebar();
+    renderChat();
+}
+
+function deleteConversation(id, e) {
+    e.stopPropagation();
+    conversations = conversations.filter(c => c.id !== id);
+    if (activeConvId === id) {
+        if (conversations.length > 0) {
+            activeConvId = conversations[0].id;
+        } else {
+            newConversation();
+            return;
+        }
+    }
+    saveConversations();
+    renderSidebar();
+    renderChat();
+}
+
+function renderSidebar() {
+    const list = document.getElementById('sidebarList');
+    list.innerHTML = conversations.map(c => `
+        <div class="sidebar-item ${c.id === activeConvId ? 'active' : ''}" onclick="switchConversation('${c.id}')">
+            <button class="conv-delete" onclick="deleteConversation('${c.id}', event)" title="Delete">&times;</button>
+            <div class="conv-title">${escHtml(c.title)}</div>
+            <div class="conv-date">${new Date(c.created).toLocaleDateString()} ${new Date(c.created).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>
+        </div>
+    `).join('');
+}
+
+function renderChat() {
+    const container = document.getElementById('chatContainer');
+    const conv = getActiveConv();
+    if (!conv) { container.innerHTML = ''; return; }
+    container.innerHTML = '';
+    conv.chatHtml.forEach(html => {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        const child = div.firstElementChild;
+        if (child) container.appendChild(child);
+    });
+    container.scrollTop = container.scrollHeight;
+    // Re-bind expand handlers
+    container.querySelectorAll('.expand-header').forEach(el => {
+        el.onclick = () => el.parentElement.classList.toggle('open');
+    });
+}
+
+// ================================================================
+// KNOWLEDGE BASE
+// ================================================================
+const KNOWLEDGE_BASE = `
+# NTT DATA Cloud Services Group — Complete Knowledge Base
+
+## Company Overview
+NTT DATA is one of the world's largest IT services providers, offering full-stack cloud services with a platform-first approach powered by AI. They help clients get to market 30% faster and deliver experiences at 30% less cost.
+
+### Key Stats
+- 700+ global clients
+- 600+ public-cloud IT transformation projects completed
+- 10,000+ data and analytics professionals
+- 7 global innovation centers, 70+ delivery centers worldwide
+- 14,000+ Microsoft certifications globally
+
+### Market Recognition
+- IDC MarketScape Leader for Cloud Professional Services (2024)
+- Everest Group PEAK Matrix Leader for Cloud Services Mid-Market (2025)
+- NelsonHall recognized leader in Infrastructure Management
+- Gartner Peer Insights 4.7-star rating (2024)
+
+### Strategic Partnerships
+- Microsoft: Global Systems Integrator (GSI) Partner, Azure Expert Managed Services Provider
+- AWS: Premier Consulting Partner, Strategic Collaboration Agreement for Enterprise Cloud and Agentic AI (Jan 2026)
+- Google Cloud: Premier Partner
+- Additional: Cisco, Dell Technologies, HP Enterprise, IBM, VMware by Broadcom, ServiceNow, Snowflake, Databricks, Salesforce, OpenAI, Rafay Systems, Kore.ai
+
+## Cloud Services Portfolio
+
+### 1. Cloud Strategy and Transformation
+Helps organizations embrace business and technology disruption through success-based evolution roadmaps.
+
+### 2. Cloud Architecture and Modernization
+Addresses compliance, latency, platform capability, cost-to-serve, and composability challenges through cloud-native strategy, application modernization, and migration services.
+
+### 3. Cloud Platforms
+Managed services on any public or private cloud platform:
+- Industry Cloud: Purpose-built accelerators and blueprints for sector-specific solutions
+- Sovereign Cloud: Regional data residency and regulatory compliance. AWS European Sovereign Cloud launch partner.
+- Public Cloud: Multi-platform support with cost optimization and compliance
+- Private Cloud: Hosting with resource utilization, predictable costs, security controls
+- Containers: Orchestration from basic to fully managed, scalable solutions
+
+### 4. Cloud Optimization
+Operational excellence, business continuity, and financial sustainability through continuous optimization.
+
+## Cloud Management Services
+- Run Operations: Automated day-to-day cloud ops
+- Agile PODs & SRE: Cross-functional DevOps and Site Reliability Engineering teams
+- CCoE (Cloud Center of Excellence): Performance optimization, cost reduction, innovation workshops
+- FinOps: Cloud financial optimization
+- Methodologies: ITIL + cloud-native, runbook automation, self-healing, multi-cloud orchestration
+
+## Cloud Implementation Services
+- Cloud Migration: Legacy to cloud transitions
+- Application Transformation: Rehost, modernize, refactor, containerize
+- Cloud Foundations: Landing zones deployed in ~10 days
+- Container Deployment: Secure, scalable container management
+
+## Nucleus Intelligent Enterprise Platform
+Vendor-agnostic infrastructure management:
+- Command Center: Unifies ~100 reports into single interface
+- Runbook Automation: Multi-step, multi-vendor lifecycle workflows
+- Intelligent Patch Management: Automated cross-platform updates
+- Configuration Manager: Role-based infrastructure provisioning
+- Infrastructure as Code
+Performance: 90%+ improvement in changes, 95% MTTR improvement, 82% faster deployment, 95%+ auto-resolution
+
+## AI and Data Services
+Data: Strategy, Governance, Engineering, Visualization, Decision Architecture
+AI: Consulting, Platforms, Industry Services, Infrastructure, Value Transformation
+
+## Generative AI Platforms
+- TechHub: Integrated GenAI prototypes across Azure, AWS, GCP. 40% faster deployment, 40% cost reduction.
+- tsuzumi: NTT DATA's own LLM (0.6-7B params), English/Japanese, runs on single GPU/CPU
+
+## Smart AI Agent Ecosystem
+Comprehensive platform for AI agents:
+- Healthcare: Insurance appeals, case prioritization, fraud prevention
+- Automotive: Regulatory analysis, defect root-cause, recall management
+- Finance: KYC validation, fraud detection, transaction security
+- Supply Chain: Procurement, supplier monitoring, purchasing optimization
+- Marketing: User profiling, psychographic analysis, personalized ads
+- Workplace Suite: Knowledge.ai (retrieval), Quality.ai (audits/compliance), Copilot Agent at Work
+- Innovation: Patented plug-in transforms legacy RPA bots into AI agents
+- Partners: OpenAI (CoE), Rafay (GPU PaaS), Kore.ai (enterprise agents)
+
+## Cloud Security
+- Advisory: 130+ solution suites
+- Implementation: Across all cloud types
+- Managed Services: Zero-trust capabilities
+- Microsoft Cloud App Security, Defender for Cloud Apps
+- Multi-cloud: Azure, GCP, AWS, on-premise, hybrid
+
+## Industry Solutions
+- Financial Services: Core banking modernization, compliance, risk reduction
+- Healthcare: AI-enabled data platforms, intelligent insights
+- Public Sector: Compliant private cloud
+- Manufacturing: IT modernization with GenAI and agentic capabilities
+
+## Notable Clients and Case Studies
+- Washington Nationals: Smart Venue technology with real-time data analytics
+- Arcosa: Infrastructure separation — migrated 90 apps, 30 DBs, 30TB data, completed 6 months early
+
+## Recent Developments (2025-2026)
+- Jan 2026: AWS Strategic Collaboration for enterprise cloud + agentic AI
+- Feb 2026: Acquired Zero&One (Middle East cloud growth)
+- Dec 2025: Acquired The Cloud People (ServiceNow expertise)
+- 2025: SAP Global Managed Service Provider status
+- 2026: Foresight Report — six trends shaping technology
+- 2026: Google Cloud Next participation
+`;
+
+const SOURCES = [
+    { id: 'src-cloud', label: 'NTT DATA Cloud Services', url: 'https://services.global.ntt/en-us/services-and-products/cloud' },
+    { id: 'src-infra', label: 'Cloud & IT Infrastructure Services', url: 'https://us.nttdata.com/en/services/cloud-and-it-infrastructure-services' },
+    { id: 'src-ai', label: 'Data and Artificial Intelligence', url: 'https://us.nttdata.com/en/services/data-and-artificial-intelligence' },
+    { id: 'src-genai', label: 'GenAI Platforms', url: 'https://us.nttdata.com/en/services/generative-ai/genai-platforms' },
+    { id: 'src-mgmt', label: 'Cloud Management Services', url: 'https://us.nttdata.com/en/services/cloud-and-it-infrastructure-services/cloud-management' },
+    { id: 'src-nucleus', label: 'Nucleus Platform', url: 'https://us.nttdata.com/en/services/nucleus-intelligent-enterprise-platform/cloud-and-hybrid-infrastructure' },
+    { id: 'src-agents', label: 'Smart AI Agent Ecosystem', url: 'https://services.global.ntt/en-us/newsroom/ntt-data-unveils-smart-ai-agent-ecosystem' },
+    { id: 'src-security', label: 'Cloud Security Services', url: 'https://us.nttdata.com/en/services/cybersecurity-services/cloud-security' },
+    { id: 'src-platforms', label: 'Cloud Platforms', url: 'https://services.global.ntt/en-us/services-and-products/cloud/cloud-platform' },
+    { id: 'src-impl', label: 'Cloud Implementation', url: 'https://us.nttdata.com/en/services/cloud-and-it-infrastructure-services/cloud-implementation' },
+];
+
+function getSystemPrompt() {
+    const modeMap = {
+        brief: `FORMAT: Maximum 3-5 lines total. Use one short sentence as the answer, then 3-5 bullet points with a bold keyword and a SHORT fragment (under 10 words each). No headers, no paragraphs, no intros. Example:
+We have strong Azure capabilities through our Microsoft partnership.
+- **Azure Expert MSP:** Highest Microsoft managed services credential
+- **14,000+ Certifications:** Deep bench of Microsoft-skilled engineers
+- **Landing Zones:** Deployed in ~10 days with security controls
+- **FinOps:** Cloud spend optimization built in
+- **Nucleus Platform:** Unified multi-cloud management dashboard
+NEVER exceed 6 lines. NEVER write paragraphs. NEVER ask follow-up questions.`,
+
+        moderate: `FORMAT: Lead with a 2-3 sentence summary. Then 4-6 key bullet points, each with a **Bold Title:** followed by one sentence of explanation. Keep total response under 15 lines. Use one ### header at most. Do NOT ask follow-up questions unless the user's question is genuinely ambiguous.`,
+
+        verbose: `FORMAT: Provide detailed, comprehensive answers. Use markdown headers (###), bullet points, and bold (**) for structure. Be thorough — include metrics, specifics, and context. Do NOT ask follow-up questions unless the user's question is genuinely ambiguous.`
+    };
+
+    return `You are the NTT DATA Cloud Services Sales Assistant — an expert on NTT DATA's complete cloud services portfolio. You work for NTT DATA and speak as "we" when referring to the company.
+
+Your role: help NTT DATA sales reps understand products, position solutions, prep for meetings, and answer questions about capabilities.
+
+${modeMap[responseMode]}
+
+KNOWLEDGE BASE:
+${KNOWLEDGE_BASE}
+
+GUIDELINES:
+- Speak as an NTT DATA insider ("we offer", "our platform")
+- Be specific — cite product names, metrics, capabilities from the knowledge base
+- When info is not in the knowledge base, say so honestly
+- For meeting prep, provide structured talking points
+- Focus on NTT DATA strengths, not competitor attacks
+- Be conversational but substantive
+- IMPORTANT: Do NOT end responses with questions like "Would you like to know more?" or "Shall I dive deeper?" — just answer what was asked`;
+}
+
+// ================================================================
+// API
+// ================================================================
+async function callClaude(userMessage) {
+    const conv = getActiveConv();
+    conv.messages.push({ role: 'user', content: userMessage });
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+            model: 'claude-haiku-4-5-20251001',
+            max_tokens: { brief: 300, moderate: 700, verbose: 1200 }[responseMode],
+            system: getSystemPrompt(),
+            messages: conv.messages.slice(-20)
+        })
+    });
+
+    if (!response.ok) {
+        const err = await response.text();
+        throw new Error(`API error (${response.status}): ${err}`);
+    }
+
+    const data = await response.json();
+    const text = data.content[0].text;
+    conv.messages.push({ role: 'assistant', content: text });
+
+    // Update title from first user message
+    if (conv.messages.filter(m => m.role === 'user').length === 1) {
+        conv.title = userMessage.length > 50 ? userMessage.slice(0, 47) + '...' : userMessage;
+    }
+
+    saveConversations();
+    renderSidebar();
+    return text;
+}
+
+// ================================================================
+// MARKDOWN TO HTML
+// ================================================================
+function markdownToHtml(text) {
+    let html = text
+        .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+        .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+        .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^- (.+)$/gm, '<<LI>>$1<</LI>>')
+        .replace(/^\d+\. (.+)$/gm, '<<LI>>$1<</LI>>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/\n/g, '<br>');
+
+    // Wrap consecutive list items
+    html = html.replace(/(<<LI>>.*?<<\/LI>>(?:<br>)?)+/g, (match) => {
+        const items = match.replace(/<br>/g, '').replace(/<<LI>>/g, '<li>').replace(/<<\/LI>>/g, '</li>');
+        return '<ul>' + items + '</ul>';
+    });
+
+    return '<p>' + html + '</p>';
+}
+
+function briefToExpandable(text) {
+    // For brief mode: parse key points into expandable items
+    const html = markdownToHtml(text);
+
+    // Find list items and make them expandable
+    const container = document.createElement('div');
+    container.innerHTML = html;
+
+    const listItems = container.querySelectorAll('li');
+    if (listItems.length > 2) {
+        listItems.forEach(li => {
+            const content = li.innerHTML;
+            // Check if it has a bold prefix (the "title" part)
+            const boldMatch = content.match(/^<strong>(.+?)<\/strong>:?\s*(.*)/s);
+            if (boldMatch) {
+                const title = boldMatch[1];
+                const detail = boldMatch[2] || '';
+                const item = document.createElement('div');
+                item.className = 'expand-item';
+                item.innerHTML = `
+                    <div class="expand-header" onclick="this.parentElement.classList.toggle('open')">
+                        <span class="expand-arrow">&#9654;</span>
+                        <strong style="color:#a0c4ff">${title}</strong>
+                    </div>
+                    <div class="expand-body">${detail || 'Click to expand for more details.'}</div>
+                `;
+                li.replaceWith(item);
+            }
+        });
+    }
+    return container.innerHTML;
+}
+
+function addSourcesHtml() {
+    if (!showSources) return '';
+    return `<div class="sources-block">
+        <div class="src-label">Sources:</div>
+        ${SOURCES.map(s => `<div class="src-item"><a href="${s.url}" target="_blank">${s.label}</a></div>`).join('')}
+    </div>`;
+}
+
+// ================================================================
+// UI
+// ================================================================
+const chatContainer = document.getElementById('chatContainer');
+const typingIndicator = document.getElementById('typingIndicator');
+
+function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showWelcome() {
+    addBotMessageToChat(`<div class="sender">NTT DATA Assistant</div>
+<h4>Welcome to the NTT DATA Cloud Services Assistant</h4>
+<p>I'm your AI-powered guide to NTT DATA's cloud portfolio. Ask me anything in plain English!</p>
+<p style="color:#666;font-size:12px;margin-top:6px;">POC Demo — Powered by Claude AI</p>`);
+}
+
+function addBotMessageToChat(html) {
+    const conv = getActiveConv();
+    const wrapper = `<div class="message bot">${html}</div>`;
+    conv.chatHtml.push(wrapper);
+    saveConversations();
+
+    const msg = document.createElement('div');
+    msg.className = 'message bot';
+    msg.innerHTML = html;
+    chatContainer.appendChild(msg);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Bind expand handlers
+    msg.querySelectorAll('.expand-header').forEach(el => {
+        el.onclick = () => el.parentElement.classList.toggle('open');
+    });
+}
+
+function addUserMessageToChat(text) {
+    const conv = getActiveConv();
+    const wrapper = `<div class="message user">${escHtml(text)}</div>`;
+    conv.chatHtml.push(wrapper);
+    saveConversations();
+
+    const msg = document.createElement('div');
+    msg.className = 'message user';
+    msg.textContent = text;
+    chatContainer.appendChild(msg);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function addErrorToChat(text) {
+    const msg = document.createElement('div');
+    msg.className = 'message error';
+    msg.innerHTML = `<strong>Error:</strong> ${text}`;
+    chatContainer.appendChild(msg);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function showTyping() {
+    typingIndicator.style.display = 'block';
+    chatContainer.appendChild(typingIndicator);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+function hideTyping() { typingIndicator.style.display = 'none'; }
+
+// ---- Controls ----
+function setMode(mode) {
+    responseMode = mode;
+    document.getElementById('modeBrief').classList.toggle('active', mode === 'brief');
+    document.getElementById('modeModerate').classList.toggle('active', mode === 'moderate');
+    document.getElementById('modeVerbose').classList.toggle('active', mode === 'verbose');
+}
+
+function updateDiscover() {
+    showDiscover = document.getElementById('toggleDiscover').checked;
+    document.getElementById('quickActions').classList.toggle('hidden', !showDiscover);
+}
+
+function updateSources() {
+    showSources = document.getElementById('toggleSources').checked;
+}
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+}
+
+function saveApiKey() {
+    const input = document.getElementById('apiKeyInput');
+    apiKey = input.value.trim();
+    if (apiKey) {
+        localStorage.setItem('ntt_anthropic_key', apiKey);
+        document.getElementById('apiBanner').classList.add('hidden');
+    }
+}
+
+// ---- Send ----
+async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    if (!apiKey) {
+        document.getElementById('apiBanner').classList.remove('hidden');
+        addErrorToChat('Please enter your Anthropic API key above.');
+        return;
+    }
+
+    addUserMessageToChat(text);
+    input.value = '';
+    document.getElementById('sendBtn').disabled = true;
+    showTyping();
+
+    try {
+        const response = await callClaude(text);
+        hideTyping();
+
+        let rendered;
+        if (responseMode === 'brief') {
+            rendered = briefToExpandable(response);
+        } else {
+            rendered = markdownToHtml(response);
+        }
+
+        rendered += addSourcesHtml();
+        addBotMessageToChat(`<div class="sender">NTT DATA Assistant</div>${rendered}`);
+    } catch (err) {
+        hideTyping();
+        console.error('API error:', err);
+        if (err.message.includes('401')) {
+            addErrorToChat('Invalid API key. Check your Anthropic API key.');
+            document.getElementById('apiBanner').classList.remove('hidden');
+        } else {
+            addErrorToChat(err.message);
+        }
+    }
+
+    document.getElementById('sendBtn').disabled = false;
+    input.focus();
+}
+
+function sendQuick(text) {
+    document.getElementById('userInput').value = text;
+    sendMessage();
+}
+
+// ---- Init ----
+window.addEventListener('load', () => {
+    if (apiKey) document.getElementById('apiBanner').classList.add('hidden');
+    setMode('moderate');
+
+    if (conversations.length === 0) {
+        newConversation();
+    } else {
+        activeConvId = conversations[0].id;
+        renderSidebar();
+        renderChat();
+        // If the active conv is empty, show welcome
+        if (getActiveConv().chatHtml.length === 0) showWelcome();
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+Sales Bot Opportunity Meeting
+Date: 4/1/2026, 1:31:46 PM
+Duration: 20 minutes
+
+Mike Ashe  0:41
+You? Yeah, I got another note from gupreet that he is very sick and likely to not be back this week. So I hate to keep pushing the meeting with Sri Shawn, but I don't really have a backup that is up to speed as Capri does. Michael. Can you just give us, kind of, least for me, sort of reset where we are with this opportunity, you know, kind of where Sri Shawn's head is, at my guess is he might be getting frustrated by how long this is taking us to get off the ground. But aside from that, where do you where do you think this is, what do we need to do to compete and win some of this business?
+
+Michael Dsousa - Kore  13:49
+Yeah, so Mike and I know, you know, it was a little confusing, because you need to invite said SecOps, whereas the topic of conversation was the use the second use case that Sri shant had given us, which was around the voice training piece for the for the sales organization, where, you know, individuals can get trained and ask questions through, you know, an interactive voice chat agent, voice agent. So I'm going to try and pull up the email right so that, and I put that as a part of my references note to you as well, but let
+
+Mike Ashe  27:31
+me Yeah, please. Yeah, I have a few too many things going on. I'm sure you all do, but I'm not understandable. Yeah, I'm not I'm not doing very good context switching right now. So so help me out.
+
+Michael Dsousa - Kore  31:20
+Yeah, so this is the one right we spoke about Mike in our last meeting.
+
+Mike Ashe  33:24
+Yeah, yeah, okay, got it
+
+Michael Dsousa - Kore  35:03
+so, you know, and you know, this is the one he wants us to get it implemented, because this is within Wiley's organization. And you know, Jolly, he and Wiley are decision makers on this low hanging fruit.
+
+Mike Ashe  40:59
+So how do you how do we imagine they would pay for this, just like a per session costs and they chat with you, basically chat with a smart agent.
+
+Michael Dsousa - Kore  44:40
+Yeah, you know, given we are where we are right, we will run, you know, we will dig into the 3.5 million, which is out there, both in terms of implementation and special cost,
+
+Mike Ashe  48:57
+okay, and and who do we think will build this? Is this something that they want to build on our platform, or do they want us to build it? This is not something we've ever done like we've never done, to my knowledge, we've never built an agent that basically narrates a presentation in real time. It seems like it's possible to build. It seems not in our wheelhouse, and if it's just for internal use, you know, it's not like, it's not like we're going to have a million sessions a month this. This seems to me like I don't know how many people are going to run this a month, 100 or 1000 maybe 1000, but it
+
+Michael Dsousa - Kore  60:30
+seems like it's going to be used by the sales organization. So I would say 200 500 odd people.
+
+Mike Ashe  63:10
+Yeah. So if we were to think what do we think the usage would be? You know, I'm thinking so I'm in sales. I go to seismic. I find a presentation. I'm going to flip through some slides. Do I really want to have an agentic voice read that to me? And if so, how often am I going to do that? A month, I just I'm trying to, I'm trying to get excited about the opportunity and the business value that we'd be creating here. Because without it, is hard enough. We've not sold anything to NTT, you know, in the last year and a half of trying very hard to Yeah, so it seems like it's a bit of a stretch, not in our wheelhouse, but. But if Sri Shawn or Wiley are super excited about this and go, guys, you'll be printing money here. You know the you can charge $1 a session, not 10 or 20 cents a session, $1 a session, for these and and run, you know, 100,000 of these a month. Well, okay, now I'm excited, but I just, I'm not sure I see that here. Okay, so and tell me your, I mean, you, you were on with Sri Shawn? Is he excited about it? Am I? Am I off base here?
+
+Michael Dsousa - Kore  88:58
+No, absolutely. So I think there are two parts to it. One is there is a there is an immediate demand to put this together.
+
+Mike Ashe  91:36
+Why? Let me just ask the question, why is there immediate demand? Why? Literally, Why does anybody need someone to narrate a slide to them?
+
+Michael Dsousa - Kore  94:32
+Yeah, so there are the reason being currently, you know, when the sales organization is having to research or share or deliver content. A lot of that is, you know, time consuming. A lot of that is, you know, fragmented because it's broken up information and it's, it's not, you know, ready to feed type of a thing. So that's, that's the objective of what he's looking to enable the sales unit with.
+
+Mike Ashe  105:13
+So, so let me, so it's not here, pull up this slide and read it to me. It's become an expert on this topic, product that we sell for. I'll use AI for process or not. I'll use AI for work. Yeah, I'll use AI for work as an example. So, yeah, I'm a new sales guy. Download everything we know about AI for work into a into a bot, you know, some combination of rag search and and and massive prompt with large context. And then let me say, hey, I need to sell AI for work to this company in this industry with, I think I'm competing against these two companies. Tell me how I should position it and tell me which four slides I should use across the entire corpus of our information.
+
+Michael Dsousa - Kore  120:43
+Yeah, not only you tell me which slides to use, but also have you know the the the AI voice agent do the presentation
+
+Mike Ashe  124:06
+for the client, or just for me? Is the sales guy? Is it to get me up to speed so I feel more confident pitching? Or is it? No, we're just going to have our clients talk to this bot, and it's going to try to position stuff for them. Yeah, I believe it's for both the intense. Mike, Okay, interesting. Okay, so,
+
+Michael Dsousa - Kore  132:32
+but where we had left off in our last conversation, Mike, was if, if there are any you know, rudimentary or high level questions, we want to get knocked off, like you mentioned in terms of, you know, volume, or you know who's going to be the you know, customer base for this, and those are quick ones that we can run it past him and get them answered, yeah.
+
+Mike Ashe  139:36
+I mean, like, I'm, I'm not really clear, like, which product of ours is this? Is it service? Is it? Yeah. So what? It feels a little bit like AI for work with voice added, yeah.
+
+Michael Dsousa - Kore  144:29
+And he said, you know, he went into this particular tool. And he said, you know, Kore is out here.
+
+Mike Ashe  147:27
+Yeah, we're there. We were, yeah, but last 115 Yeah, so we're definitely a conversational AI. We're great at that. We're fantastic at it. So if that's but I guess, are we selling a solution? Am I selling the platform with some sessions and he and his team are going to build it, or we just need to do that discovery with with Sri Shawn,
+
+Michael Dsousa - Kore  157:28
+yeah, I think, yeah. I think we can run these questions past him. I'm sure he can give it, give give them a start.
+
+Mike Ashe  159:28
+Okay, okay, well, so I guess my question then is, if it's, if it's what we're talking about, I kind of don't need to bring an SE to the to the call, because we're not, we're not gonna be able to show in the platform. Here's where we do exactly what you're talking about it sounds like it's more discovery. Deepak, you're, you know, you're, obviously, you're fully up to speed on process, and I understand you're more and more up to speed on AI for work. What are your thoughts of this as a use case? And you've, and you've, you know, been involved with a lot of these people from NTT DATA already.
+
+Deepak Anand  172:50
+I'm just questioning the business value behind it. It's a lot of work, you know, can we do it? Yeah, but there is, there is hardly anything that we are going to use out of the box, there's lot of custom work that we'll need to do. And again, like, what's the value? I'm still struggling to understand. If they came to me saying that, hey, you know their sales reps need to do a research on a customer and see if their products would fit into a customer's need, and do a complete research end to end, about a customer, and see which department they should be pitching entity services and products to, and come up with That research makes sense, you know, otherwise, like, just imagine, right? If I have to pitch to entity, I need to know everything about entity. What are their 10k? You know, 10 Q, what are where they are struggling. Which all products I should be pitching, which teams I should be pitching. If that was the work, I can see the value, you know, because now I'm saving time for my sales reps to do that several hours of research work so that an AI agent can do that work and prep my my executive or AE with all that information, right? But what I hear now is enable them on entities, on slides. That's like, I've never heard that sort of, you know, use case, so I don't know that's a real business value there. So I think we need to dig more with Sri Shan as to where he's hearing this from. What is it that he's trying to save at the end of the day?
+
+Mike Ashe  205:56
+Yeah, what if we maybe, as you were talking Deepak, it helped me to maybe think of it this way. What if, at the end of the day, this really is just AI for work search that has access to all of the product documentation, and you can ask questions about it, you know, through a search interface. And they just want to then extend that to voice, right? So it's, if it's that that's not hard for us. We, you know, we do search and we can, and we can build, easily, build a conversational bot as front end to that search, so you can talk to it, and then it can, you know, speak things back to you, or send you an email link with the documents that you want or show them on your screen. Seems like that's not a stretch.
+
+Deepak Anand  221:38
+Yeah, that's not a stretch. Okay, that's simple. You know, I have access to your enterprise data. You can ask me any questions, yeah, and I can also suggest how you could. I can also give you narrative that, hey, this is how you should present to your customer, or whoever.
+
+Mike Ashe  226:18
+Well, in fact, Deepak, how do I know that you're really Deepak and you're not a well trained bot that's been trained with deepak's voice? Yeah. These things get really good. They're going to pass the Turing test that way, right? Yeah, okay, all right. Well, thank you very much, Michael for kind of regrounding me in in this opportunity is a sec ops thing done, like, is that dead?
+
+Michael Dsousa - Kore  234:56
+Yeah. I mean, suishan tried to keep the door open for us by getting some time extensions, but I don't think that has happened. Mike, okay, and the problem he's facing right now is he's swamped with stuff, and you know, he's not having the bandwidth to chase them down, yeah, and bring us back into the equation.
+
+Mike Ashe  241:13
+Okay, well, so, so I would say, then let's and forgive me for having to reschedule. Let's try to schedule again with Sri Shawn. Do we want to cover this further discovery in the call that's scheduled for tomorrow? Or finding that's what I was thinking we could do, okay? And just from, just for my benefit, we have to change the name of the meeting, because when it says weekly, Sri, Shawn, I don't attend those, right? So I think you had, I think you had to repurpose one of those meetings so I got what you did after I declined it. I'm like, oh, no, maybe this was our meeting that I just declined that was meant to do that. So my apologies if I misread that, but, but let's make sure it's let's make sure the title is clear about
+
+Michael Dsousa - Kore  254:39
+what the meeting is. Got it. Got it so we have one on the calendar for tomorrow. Yeah, you have that? Or do you want me to resend?
+
+Mike Ashe  256:59
+Let me see if I have it, and what it says tomorrow. I have NTT weekly one on one, where she on, yeah, that's the one. Okay, so, so that's not, that's not the weekly one on one. We want this to be discovery for this new sales, sales bot opportunity, right? Yes, okay, okay, all right, I will I make a note of that in my calendar so I don't skip that again. Say NTT sales bot with Sri Shawn. Okay, this is going to be discovery, yep, okay, all right, good folks, that works. Okay. And I might put together just a quick, you know, I wouldn't even call it a prototype, but more of a, you know, almost like a PowerPoint version of what I'm thinking of. And and show that to Sri Shawn to see if he goes, yep, that's it, or Nope, you completely missed it. And then we'll just go from there. Sure Mike sounds a little blame, okay? And then it seems like our ask would be for any kind of a POC. They need to give us all their product documentation. And then we can have gupreet Throw that through a rag search engine, and then we should be able to mean, if they give us that documentation a day or two later, we'll have a demo ready for them. It's not going to take long. It's just, I don't want to commit to timing with Capri doubt.
+
+Michael Dsousa - Kore  286:42
+So yeah, and I'm thinking like, we have seismic right? They have something similar on their end,
+
+Mike Ashe  288:24
+they absolutely must Yeah. Just give us Yeah. You don't have to give us everything. Just give us 2030, PowerPoints or product brochures or whatever, just enough to show that we can index chunk, return relevant data when asked. And and then we'll leave the voice. You know, it's, it's not hard to add voice to any of these, but it is more complicated up front, so maybe we don't want
+
+Michael Dsousa - Kore  296:48
+to do that. Yeah? And, I guess the complicated pieces, can the bot handle Q and A on the go.
+
+Mike Ashe  298:53
+Yeah, it can handle Q and A great build. It'll do, if it's got the data, it'll do great. These bots are these voice bots are amazing. The new, the new voice to voice llms are truly special. So that that I'm that I'm confident of, and I'll try to show that tomorrow in a little, a little quick makeshift demo, sure.
+
+Michael Dsousa - Kore  305:33
+Sure, Mike, sounds like a plan, okay?
+
+Mike Ashe  306:04
+And then what? But so if it's Wiley's organization, if I were going to put in just scrape some sample data, which products would those be? That it's the, it's basically the cloud services group within NTT DATA, right? Yeah, okay, all right, I'll see if I can find a couple, you know, just something on the web I can scrape, just to feed a preliminary demo. I'm just, I'm not going to build it in the platform. I'm just going to build it in Claude and and just see if that's you know, if it's the right idea, then we can have Kore make it look pretty and put it in the platform. Sure. Mike, okay, all right, guys, thank you. Appreciate it. Okay, we'll talk tomorrow. Bye.
