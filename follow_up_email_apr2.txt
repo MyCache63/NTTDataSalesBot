@@ -1,0 +1,30 @@
+Subject: NTT DATA Sales Bot — Updated Requirements & Next Steps
+
+Hi Shreeshan,
+
+Thank you for your time today — really helpful to see your vision come into sharper focus. The virtual teammate concept (joining Teams calls, presenting, answering Q&A, logging gaps for follow-up) makes a lot of sense, and the demo catalog idea is a great way to scale this across all of NTT DATA's practices.
+
+I've attached the updated requirements document (v03). Key updates based on today's discussion:
+
+  - Confirmed volume: 200+ users, ~10 sessions/month each
+  - Confirmed Gradius as implementation partner
+  - Added new requirements: voice input/output, digital assistant mode, demo catalog, Hot Spot portal integration
+  - Moved answered questions to a "Confirmed Decisions" section
+  - Added new use cases: Digital Assistant Q&A, Demo Catalog Browse & Launch, Knowledge Gap Closure
+
+Two asks to keep things moving:
+
+  1. Sample materials — When you get a chance, please send over 20-30 PowerPoint decks and any associated documents (scripts, narratives) from the Cloud Services Group. This is what we need to build the next phase of the POC with real content.
+
+  2. Open questions — A few items we still need to nail down (details in Section 8 of the doc):
+     - Security & compliance requirements for the data
+     - Confluence access scope (which spaces, who grants access)
+     - Teams deployment model (existing bot framework, IT approvals)
+     - Hot Spot portal integration details (tech stack, integration level)
+
+No rush on the questions — happy to work through them in our next session. The sample PPTs are the main blocker for the next demo.
+
+Thanks again, and looking forward to the next step.
+
+Best,
+Mike

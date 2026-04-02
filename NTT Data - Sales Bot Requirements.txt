@@ -1,0 +1,196 @@
+Speaker 1  0:00  
+You I'm just texting. Okay, Great. I i I
+
+Michael Dsousa - Kore  2:31  
+Okay? You You so he's usually, I would say sporadically, 10 minutes late for this call. Okay? I texted him, and I've sent an email reminder as well.
+
+Mike Ashe  4:03  
+So okay, I'm good to hold here. I can show you what I've put together. Sure share my screen. There we go. I
+
+Shreeshan  NTT  4:25  
+Hi, srishan, hi. Sorry for joining late. I was working on a large deal, so it took time
+
+Mike Ashe  4:33  
+to jump off. This is way more important than any large deal. Sri Shawn, come on. All right, well, let's let's jump in. So I've got two things for you, which I would say both of these are kind of a start, and then I want to get your feedback and ask you some questions, and we'll figure out what to do next. Sound good? Okay, so let me share my screen.
+
+Michael Dsousa - Kore  5:02  
+Sushant, are you okay? So that in case,
+
+Shreeshan  NTT  5:05  
+most welcome, sir.
+
+Mike Ashe  5:06  
+Okay, perfect. I Oh, shoot my Google Chrome. Let me see if this, I might have to log out and log back in, sure in order to share my screen. So if I do, I'll be right back. I promise. Okay, quit and reopen. Yeah, shoot, okay, I'll be back. You.
+
+Okay, I think I'm back.
+
+Michael Dsousa - Kore  5:58  
+Mike. You want to set the recording? I'm struggling to find the option. It said
+
+Mike Ashe  6:03  
+it's recording. As soon as I came in, said, Gemini is recording this meeting. Okay, so I think we're set. Let me just get my two things teed up here. Okay, share my screen, make sure it shares this time, entire screen, okay? Why isn't it sharing?
+
+I'm sorry, guys. I'll be right back. Actually, let me just I'm just going to share this doc with you. Michael, real quick. Maybe you can pull it up, just kind of start to scroll through it. I just want to show Sri Shawn, what we've put together in terms of requirements, and then I'll be right back. I have to redo my my freaking Chrome settings again. Do you get that from me? Michael, just get a document from me. Guess it's on. It's great. Okay, I'll be right back.
+
+Michael Dsousa - Kore  7:46  
+Yeah, Mike, I was able to pull that up.
+
+Mike Ashe  7:48  
+Okay, I'm back for the third time. It's still not letting me share my screen. I was able to share, yeah, but I have a I have another doc. I now want to give a full demo. I don't I've been having problems with these teams meetings. Would it be too disruptive if we go to zoom, because I want to show you the mini demo that we built. Sri Shawn, just to start. Would it be too disruptive? Or if tree Sean, if you want to drop a teams meeting for us, I just, I can share on anything except Google. Meet for some reason. Okay, I can send us through teams. Yeah, yeah. If we
+
+Shreeshan  NTT  8:35  
+can, we can connect through teams
+
+Mike Ashe  8:36  
+right now. Okay, you want to just drop us a teams link and we'll jump on. I can do that.
+
+Shreeshan  NTT  8:41  
+I can send you right now. Okay, great. Thank you. Let's connect. Okay, bye.
+
+Oh, great, yeah, perfect, so now we can do the payment directly to grad years all the April May I was talking about, then it can go directly to them.
+
+Speaker 1  10:26  
+Yeah, okay, Excellent, great.
+
+Mike Ashe  10:30  
+Thank you, srishan, sorry for the issues I was having. Their wrong document. Where is the NTT requirements. There we go. All right, so I just took your email, basically, and put it into some requirements. We don't have to go through this, given the limited time we have, but just want to, you know, some point the artifact we're going to have to hand over to whoever implements this is what are we talking about? What are these but high level requirements, AI, presenter, etc, etc, and then some of the actual use cases. So these are the things that we'll test. Then, as part of the POC, we'll test these actual use cases. If we want to edit these we can, but my guess is, if we were able to do these things, the team would be fairly happy when we show you a quick demo, which is just, it's just a piece of what you're looking for, but I just want to show that to you, and then I want to make sure we've got time to come back and get some of these discovery questions, because this is really, really kind of the key. Okay, so now, where's my bot? Where is it? Here. All right, are you seeing kind of a bot on my screen? Yeah. Okay, so that what I did is I just I didn't have any documents. I don't have any of your present PowerPoint presentations. At some point we'll need those to continue the POC. And if you can send us, you know, 10 or 20 PowerPoints, in a sense, a key goal of this seems to be arranging PowerPoint and delivering PowerPoint. We need that. But in absence of that, I just crawled your website, put together a little mini bot, you know, branded it here, and then just say, first I'll just ask a question, then I'll Ask about slides. Does NTT DATA have cloud security offerings. Now I can decide if I want brief, moderate or verbose answers. I can decide if it wants to f we want to let it ask discovery questions at the end of each question, and I can say I want to show my sources or not, so I'm going to just put in this, and it's going to go through. And I had moderate detail, so I've got moderate detail, and I've got my sources. So yes, we have this. Here's our cloud security offerings. I can ask a follow up question on that, or I can look at any of these specific documents that it used, and then if you click on those, it just takes you to that source document.
+
+Shreeshan  NTT  13:34  
+In this case, it's on your site. Perfect.
+
+Mike Ashe  13:37  
+Perfect. If you go brief and ask you ask a question about cloud services. I'll let you I'll let you drive. What should I ask, or about even ask the same question? Okay, okay,
+
+and now I get a much more concise answer with a little drop downs, yeah, but still, because I still had sources checked, it still does sources, and then it has in context. So if I say, What about Azure, it should know I'm still talking about security and services. Provider, strong credentials, Azure expert, MSP, 1400 etc, etc. So that's kind of the that's basic search capability. We index, we search, we provide back.
+
+Shreeshan  NTT  14:37  
+Yeah, that's a standard rag feature,
+
+Mike Ashe  14:38  
+standard rag feature. So now I want to say, let's see. I have a first meeting with a client. What five slides should I show?
+
+And it's going to so I don't have slides to actually pull, but it's like, who we are, why we matter, 700 global clients. So it's, it comes up with what the outline should be. Now, the piece that's missing here is, okay, what are, where are, where can I get those from? What deck should I pull those slides from? And for that, the process is ingesting, indexing each slide separately, and then having, essentially, it's still going to be a rag search, but to say, pull in these slides in this way. So that's kind of creating. And then the last thing is, now animate this and give the presentation, which is kind of the final, believe it or not, it's that middle step that's the hardest. Like finding the right slides that go with this is harder than anything else. The last part of, you know, give me, give me my script, and then speak that script is actually fairly straightforward, and you can do so this isn't that you have the power to do that here. Give me my talking points for slide three as a script two minutes in length. And I'm sure at some point you're going to want to control all these so you have a slider for how long do you have for the whole presentation? Five minutes, 10 minutes. But then this gives the script. And then the next thing is just send this to text, to speech, and speak the script. Choose your voice and speak the script.
+
+Shreeshan  NTT  16:58  
+Perfect. So whatever that you did it right now. And thanks for putting up some of these things, some of the things, obviously I had not thought about it. Nice of you to add those things. There are two things, right? One is the same thing. Can I ask using the voice instead of typing it? Yeah, that's number one, yeah. And also the answer back on the voice, back on the voice itself. That is the point number one second is that the when imagine that your team is today, when somebody asked, Hey, tell me, give me about Kore AI. What does it do? What is the tool about? So generally, you will open a PPT, and you will start explaining, hey, Kore AI is a conversational AI platform. We are a company like this, blah, blah, blah, blah, blah, all that stuff. Yeah, that today. You manually do it. Imagine that you configure it in this AI, the AI, add that AI into meeting request one of a team member here in the teams meeting, yeah, so that when I start, so that that agent is start presenting based on the predefined script which is already provided, it's going to do it. And then in between, also, that agent has three information. One, there's a slide deck which they can choose and say, This is the presentation. Second, there is a narrative about that slide deck which is documented so that it reads it. Third, it should connect to my Confluence portal, where all the technical documentation is stored there in the confluence. So you should have done a pre processing real time. I don't know how whatever the best works. It can be a scheduled, also not necessarily. It has to be real time. That means regularly, once a day, it goes to Confluence, check the documentation, completes the rack feature, so that next day, when there is a demo, it knows the confluence. Back end, all the technical details. So back to here, when you're explaining about Kore AI, suddenly customer can interrupt and say, Hey, what is the LLM that you're using, right?
+
+Mike Ashe  19:12  
+So do you have, do you have this security credential?
+
+Shreeshan  NTT  19:18  
+Exactly? Yeah. Now it's very difficult for everybody in the Kore AI sales team to remember so much of technical information, right? Not nearly everybody is competent or fluent enough to explain so then that bot has got already connected to Confluence. It has all the technical SOPs digested so that it can answer back. Hey, you know, this is how it works, yeah, as a thing. And there can be a situation where it is something is not in the confluence, because it's the first time somebody has asked that question, or we are not documented it like that. So then the bot should say, Okay, I got it, and let me come back. I'm just noting down this question, and I'm going to revert back so they it stores those questions that it couldn't answer, and so that tomorrow I go and update the confluence next day, so that day after it has an answer. So that could be a continuous cycle, right? So that's the,
+
+Mike Ashe  20:13  
+yeah, perfect. So, so kind of the the model is, this is a virtual teammate that's going to be added to calls. It will always be taking notes, I presume, because it has to listen to everything. So it always needs to know context. So it'll be transcribing everything in real time. You can address it directly. You know, we have to give it a name, like, hey, Samir bot. Come off mute and help us answer this question about Fed ramp. Fed ramp authorization, okay, it gives an answer. Then it gets asked something that doesn't know, I don't know the answer to that. I'll note that, and we'll, we'll come back with that answer. And then it can also, then just present whole slides, either because it was pre trained in it or just on the fly. You know, maybe it takes 10 seconds to do what I just did here, exactly. It just then reads that, reads that slide, yeah.
+
+Shreeshan  NTT  21:16  
+And then I should be able to configure and create a catalog of demos that the agent can do. It could be one entity, composable, one entity, Flash. It could be cloud. I can go on Create lot of those demo videos tomorrow. Finops team wants to use for their finops Practice demo. Somebody else wants to use Hugo demo. So there is an opportunity to keep adding a catalog of demos to this portal so that across the organization, any product, any demo, people can just log into and create it and start going and think, then I can integrate this into a hotspot, which is a pre sales, sales support portal, so that everybody uses this as a default capability to communicate to all our capabilities. Demos, everything, okay? And you
+
+Mike Ashe  22:06  
+said HubSpot, right? Not hot spot,
+
+Shreeshan  NTT  22:09  
+yeah, hot spot. Hot Spot is the portal name, okay? For the pre sales support for one entity, platform, Confluence is the all the technical documentation portal. Okay, hot spot is for pre sales, and then
+
+Mike Ashe  22:22  
+the CRM itself is Salesforce, yeah.
+
+Shreeshan  NTT  22:26  
+CRM is a sales force, obviously. But okay,
+
+Mike Ashe  22:31  
+we don't use Salesforce. We use HubSpot, which is a competitor to Salesforce, okay, this is just a name given
+
+Shreeshan  NTT  22:39  
+hotspot, okay, nothing to do with that. Just a name, give up. Okay, so I want to start with our team, and then once it's once it's there, I'm sure everybody's going to start using it extensively across the organization.
+
+Mike Ashe  22:52  
+Okay, great. Well, we have five minutes left. Let me turn it to you, and I'm just going to ask you some questions here. Best you can how many people do you see using this per month? Like, what does the usage look like?
+
+Shreeshan  NTT  23:09  
+Definitely, there's gonna be at least 100 in a month. Definitely, okay, because just a platform alone, right? Just a one entity, platform alone and a pre sales, yeah. Now you can think about all other demos that we use, of all the tools and all the services, yeah. But just, I want to just respond to just a one entity
+
+Mike Ashe  23:30  
+platform, okay, so a couple 100 users each using it, maybe once a month,
+
+Shreeshan  NTT  23:36  
+sounds about right? Each one of us, each one of us, each one of us give a demo at least like 2050, to 20 demos in a month. Okay, do that? Okay, okay,
+
+Mike Ashe  23:49  
+so, so say 100 or 200 users and 15 to 20 per month?
+
+Shreeshan  NTT  23:57  
+No, it's like 200 definitely users, 200 plus users, each one of them giving at least 10 demos a month. Because today, I do it because of on behalf of lot of people, and they're familiar, each one of them would do at least 10 demos. Definitely, okay.
+
+Mike Ashe  24:15  
+I just want to capture some of this. I'll say 100 to 200
+
+Shreeshan  NTT  24:19  
+even if they don't do a demo. I'm expecting. A typical challenge comes is that they need to ask me. They need to come to me for asking some question, yeah, tomorrow, it can be a digital assistant, right? Anything. They want to know what platform, they just click the button and ask the question, yeah, they get
+
+Mike Ashe  24:35  
+the answer. Sri Shawn is out fishing. Here's virtual Sri Shawn here to help you. Absolutely, okay, absolutely, all right, okay, pricing model, so that's, we'll deal with that later. That's going to be, it's going to be per use session. You know about all that? Who's going to build this? Because so the platform, the platform can support everything we've just
+
+Shreeshan  NTT  24:57  
+shown you. Yeah, a Gradius. I don't have any team. It's a Gradius who has to build it, who has to build Gradius, your partner?
+
+Speaker 1  25:06  
+Oh, radius, great. So Mike, we have Gradius.
+
+Mike Ashe  25:11  
+Oh, Gradius. Okay, I don't, I don't know them. Okay, okay, yeah,
+
+Shreeshan  NTT  25:14  
+we just onboarded them as a vendor. Also, currently we work with them for all the MetLife and all other existing core platform. It is your vendor who's going to support us. Yes, is that right?
+
+Mike Ashe  25:24  
+Do I spell it correctly? Yeah, that's correct. D, i, o, u s, d, i, o, u s, okay, okay.
+
+Michael Dsousa - Kore  25:32  
+A lot of the folks, Mike, on that, on that team, are x Kore,
+
+Mike Ashe  25:36  
+okay, awesome. So we need this source data.
+
+Shreeshan  NTT  25:43  
+Oh, that's all. Will be easy, because, anyway, we have a CSOP role. We can connect to all the staff. Yeah, so do you want
+
+Mike Ashe  25:51  
+to be while we're working on this kind of demo and proposal? If you want to send over 20 to 30 samples, we can do that.
+
+Shreeshan  NTT  26:01  
+Yeah, I can do that.
+
+Mike Ashe  26:02  
+Okay. This is all internal use. The presentations might be delivered externally, but this is all internal exactly.
+
+Shreeshan  NTT  26:13  
+Okay, you're correct. Okay.
+
+Mike Ashe  26:17  
+Voice narration sounds like it's critical. Yeah? So maybe we start with text and then layer and voice. Voice. The reason voice is more complex is it's easier to talk to, but it's harder to listen to, because you give these answers are going to be somewhat long. This is a lot to speak.
+
+Shreeshan  NTT  26:41  
+Oh, yeah. Generally, it's generally when you respond back, also you don't give such a long Yeah, we would use more, like, two lakh answer we do more likely we will send that document. Yeah, yeah.
+
+Mike Ashe  26:52  
+We can do this, this, this, which would you like to hear more about? Oh, I want to hear more about finops. And then you can give more.
+
+Shreeshan  NTT  27:01  
+Yeah, yeah. And generally, in the conversation, in the demo, generally, it's like a more of a pointed question, answers, yeah. And if customer asks that, I need a detailed process, I need an architecture diagram or something like that. If they ask, generally, we don't explain. We say, Okay, I understood. I'm going to send you or email, so we just cut shot that we don't really get into a long explanation, okay,
+
+Mike Ashe  27:26  
+and I unfortunately have a hard stop. So I'll, I'll, I'll summarize the answer, Mike, we'll do that. I can do that. Okay, great. All right, thank you. Sounds like we're approximately on the right track. If you can send us those PowerPoints, we can kind of show that piece.
+
+Shreeshan  NTT  27:48  
+Next time I will do it, I will send you a PowerPoint and some associated documents so that we can exactly
+
+Mike Ashe  27:55  
+imitate that perfect. Okay. All right, thank you guys, thanks.
+
+Shreeshan  NTT  28:01  
+You can drop off. I'll just take a minute with Mike. Okay.
+
+Mike Ashe  28:03  
+Michael, All right, thanks. Thanks. Mike, Thanks, yep. Thanks Guys. You So so The You You So You So Oh, You You i.
+
