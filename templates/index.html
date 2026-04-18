@@ -130,7 +130,7 @@ table.incidents .col-number{color:#0068c8;font-weight:500;min-width:100px}
 .target-none{color:#757575}
 
 /* ===== DETAIL VIEW ===== */
-.detail-view{padding:20px 24px;display:none}
+.detail-view{padding:20px 24px}
 .detail-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .detail-header .back-btn{font-size:13px;cursor:pointer;color:#0068c8;
   display:flex;align-items:center;gap:4px}
@@ -199,7 +199,7 @@ table.incidents .col-number{color:#0068c8;font-weight:500;min-width:100px}
 .analyze-single-btn{margin-top:16px;width:100%}
 
 /* ===== DASHBOARD VIEW ===== */
-.dashboard-view{padding:20px 24px;display:none;overflow-y:auto}
+.dashboard-view{padding:20px 24px;overflow-y:auto}
 .dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
   margin-bottom:24px}
 .dashboard-grid.wide{grid-template-columns:repeat(2,1fr)}
@@ -374,7 +374,7 @@ table.incidents .col-number{color:#0068c8;font-weight:500;min-width:100px}
   </div>
 
   <!-- ===== TICKET DETAIL VIEW ===== -->
-  <div class="detail-view" id="detail-view">
+  <div class="detail-view" id="detail-view" style="display:none">
     <div class="detail-header">
       <a class="back-btn" onclick="switchView('incidents')">◀ Back to Incidents</a>
       <span class="ticket-id" id="detail-ticket-id"></span>
@@ -383,7 +383,7 @@ table.incidents .col-number{color:#0068c8;font-weight:500;min-width:100px}
   </div>
 
   <!-- ===== DASHBOARD VIEW ===== -->
-  <div class="dashboard-view" id="dashboard-view">
+  <div class="dashboard-view" id="dashboard-view" style="display:none">
     <div class="content-header" style="background:transparent;border:none;padding:0 0 16px 0">
       <img src="/static/kore_logo.png" alt="Kore.ai" style="height:32px">
       <h2 style="font-size:20px">Sentiment Analytics Dashboard</h2>
@@ -879,8 +879,8 @@ function renderDashboard(data) {
 /* ===== VIEW SWITCHING ===== */
 function switchView(view) {
   document.getElementById('incidents-view').style.display = view === 'incidents' ? '' : 'none';
-  document.getElementById('detail-view').style.display = view === 'detail' ? '' : 'none';
-  document.getElementById('dashboard-view').style.display = view === 'dashboard' ? '' : 'none';
+  document.getElementById('detail-view').style.display = view === 'detail' ? 'block' : 'none';
+  document.getElementById('dashboard-view').style.display = view === 'dashboard' ? 'block' : 'none';
 
   document.querySelectorAll('.sidebar .nav-item').forEach(el => el.classList.remove('active'));
   if (view === 'incidents' || view === 'detail')
