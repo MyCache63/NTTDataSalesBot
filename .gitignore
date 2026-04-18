@@ -1,2 +1,11 @@
 # Local demo file with embedded API key — never push this
 ntt_data_salesbot_poc.html
+
+# Secrets
+.env
+
+# Cached analysis results (regenerate with Run Analysis button)
+analysis_cache.json
+
+# Word temp files
+~$*
